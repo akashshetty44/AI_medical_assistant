@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Medical Chatbot</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💬 AI Medical Chatbot</h1>
+
+    <div id="chat-box" class="chat-box">
+        <div class="bot-message">
+            👨‍⚕️ Hello! I am your AI Medical Assistant.<br>
+            Ask me any health-related question.
+        </div>
+    </div>
+
+    <div class="chat-input">
+
+        <input
+            type="text"
+            id="message"
+            placeholder="Type your question..."
+            autocomplete="off"
+        >
+
+        <button onclick="sendMessage()">
+            Send
+        </button>
+
+    </div>
+
+    <br>
+
+    <a href="/">
+        <button>
+            🏠 Back to Home
+        </button>
+    </a>
+
+</div>
+
+<script>
+
+async function sendMessage() {
+
+    let input = document.getElementById("message");
+
+    let message = input.value.trim();
+
+    if(message === "")
+        return;
+
+    let chatBox = document.getElementById("chat-box");
+
+    chatBox.innerHTML +=
+        `<div class="user-message">
+            <strong>You:</strong> ${message}
+        </div>`;
+
+    input.value = "";
+
+    const response = await fetch("/chat",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+            message:message
+        })
+
+    });
+
+    const data = await response.json();
+
+    chatBox.innerHTML +=
+        `<div class="bot-message">
+            <strong>Assistant:</strong> ${data.reply}
+        </div>`;
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+document.getElementById("message")
+.addEventListener("keypress", function(event){
+
+    if(event.key==="Enter"){
+        sendMessage();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
