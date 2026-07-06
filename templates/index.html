@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Medical Assistant</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🩺 AI Medical Assistant</h1>
+    <p class="subtitle">Enter your details and symptoms below.</p>
+
+    <form action="/predict" method="POST">
+
+        <label>Full Name</label>
+        <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            required
+        >
+
+        <label>Age</label>
+        <input
+            type="number"
+            name="age"
+            min="1"
+            max="120"
+            placeholder="Enter your age"
+            required
+        >
+
+        <label>Gender</label>
+        <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <h2>Symptoms</h2>
+
+        <input
+            type="text"
+            name="symptom1"
+            placeholder="Symptom 1"
+            required
+        >
+
+        <input
+            type="text"
+            name="symptom2"
+            placeholder="Symptom 2"
+        >
+
+        <input
+            type="text"
+            name="symptom3"
+            placeholder="Symptom 3"
+        >
+
+        <input
+            type="text"
+            name="symptom4"
+            placeholder="Symptom 4"
+        >
+
+        <input
+            type="text"
+            name="symptom5"
+            placeholder="Symptom 5"
+        >
+
+        <button type="submit">
+            Predict Disease
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/chatbot">
+        <button>
+            Open AI Chatbot
+        </button>
+    </a>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
