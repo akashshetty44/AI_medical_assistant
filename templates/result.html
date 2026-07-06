@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🩺 AI Medical Assistant</h1>
+
+    <h2>Disease Prediction Result</h2>
+
+    <div class="card">
+
+        <h3>Patient Information</h3>
+
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Age:</strong> {{ age }}</p>
+        <p><strong>Gender:</strong> {{ gender }}</p>
+
+        <hr>
+
+        <h3>Symptoms</h3>
+
+        <ul>
+            {% for symptom in symptoms %}
+            <li>{{ symptom }}</li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+
+        <h3>Predicted Disease</h3>
+
+        <div class="prediction">
+            {{ disease }}
+        </div>
+
+        <hr>
+
+        <h3>Recommended Precautions</h3>
+
+        <ul>
+            {% for precaution in precautions %}
+            <li>{{ precaution }}</li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+
+        <div class="warning">
+            <strong>Disclaimer:</strong><br>
+            This prediction is generated for educational purposes only and is not a medical diagnosis.
+            Please consult a qualified healthcare professional for proper evaluation and treatment.
+        </div>
+
+        <br>
+
+        <a href="/">
+            <button>🔙 Check Another Patient</button>
+        </a>
+
+        <a href="/chatbot">
+            <button>💬 Open AI Chatbot</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
